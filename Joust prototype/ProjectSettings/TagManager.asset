@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - GameManager
+  - Spawn 1
+  - Spawn 2
+  - Spawn 3
   layers:
   - Default
   - TransparentFX

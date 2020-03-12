@@ -6,6 +6,7 @@ public class EnemyDefeat : MonoBehaviour
 {
     public GameObject explodeEffect;
     List<Collider> colliders = new List<Collider>();
+    public GameManager gameManager;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -13,9 +14,11 @@ public class EnemyDefeat : MonoBehaviour
         {
             if (this.gameObject.transform.position.y + 0.1f < GameObject.FindGameObjectWithTag("Player").transform.position.y)
             {
-                GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().score += 100;
+                gameManager.score += 100;
+                gameManager.EnemyHasDied();
                 Instantiate(explodeEffect, transform.position, Quaternion.identity);
                 Destroy(gameObject);
+
             }
             print("collision");
         }
@@ -23,7 +26,7 @@ public class EnemyDefeat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
     
 
