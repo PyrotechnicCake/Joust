@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 722397717}
   m_Layer: 0
   m_Name: ground (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1139,7 +1139,7 @@ GameObject:
   - component: {fileID: 1713962462}
   m_Layer: 0
   m_Name: ground (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 1810956241}
   m_Layer: 0
   m_Name: ground (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1346,6 +1346,21 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 180517263}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1873887784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873887775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab64bfb53567da4d88cc3bd6421f36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explodeEffect: {fileID: 3267774853995160370, guid: c04523905123e7741829cb3af5bb1399,
+    type: 3}
+  gameManager: {fileID: 1052576669}
 --- !u!1 &1879859653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,7 +1404,7 @@ GameObject:
   - component: {fileID: 2094755512}
   m_Layer: 0
   m_Name: ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
