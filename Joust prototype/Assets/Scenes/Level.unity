@@ -877,7 +877,7 @@ MonoBehaviour:
   onGround: 0
   player: {fileID: 0}
   myTarget: {x: 0, y: 0, z: 0}
-  myDir: 0
+  myDir: -1
   jumpTime: 0
 --- !u!23 &1123097455
 MeshRenderer:
@@ -1592,7 +1592,7 @@ MonoBehaviour:
   onGround: 0
   player: {fileID: 0}
   myTarget: {x: 0, y: 0, z: 0}
-  myDir: 0
+  myDir: -1
   jumpTime: 0
 --- !u!23 &1994979914
 MeshRenderer:

@@ -21,10 +21,10 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if (this.gameObject.transform.position.x > -11)
-        {
-            myDir = -1;
-        }
+        //if (this.gameObject.transform.position.x > -11)
+        //{
+        //    myDir = -1;
+        //}
         //jump every so often
         jumpTime -= Time.deltaTime;
         if (jumpTime < 0) {Jump();}
