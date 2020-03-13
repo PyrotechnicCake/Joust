@@ -11,24 +11,38 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 touchPosition;
     private Vector3 direction;
     private Touch touch;
+    public Joystick joystick;
+    float horizontalMove = 0f;
 
 
     void Update()
     {
         Jump();
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        /*Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
         transform.position += movement * Time.deltaTime * Speed;
-        if (touch.phase == TouchPhase.Moved)
+        /*if (touch.phase == TouchPhase.Moved)
         {
             /*touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
             touchPosition.z = 0;
             direction = (touchPosition - transform.position);
-            Vector3 touchMovement = new Vector3(direction.x,0) * Speed;*/
+            Vector3 touchMovement = new Vector3(direction.x,0) * Speed;
 
             Vector2 playerScreen = Camera.main.WorldToScreenPoint(transform.position);
             direction = ((Vector2)touchPosition - playerScreen);
             Vector2 touchMovement = new Vector2(direction.x, 0);
             transform.position = touchMovement * Time.deltaTime * Speed;
+        }*/
+        if(joystick.Horizontal >= .2f)
+        {
+            horizontalMove = Speed;
+        }
+        else if (joystick.Horizontal <= -.2f)
+        {
+            horizontalMove = -Speed;
+        }
+        else
+        {
+            horizontalMove = 0;
         }
     }
     void Jump()
