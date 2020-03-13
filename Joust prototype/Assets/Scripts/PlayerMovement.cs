@@ -20,10 +20,15 @@ public class PlayerMovement : MonoBehaviour
         transform.position += movement * Time.deltaTime * Speed;
         if (touch.phase == TouchPhase.Moved)
         {
-            touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+            /*touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
             touchPosition.z = 0;
             direction = (touchPosition - transform.position);
-            Vector3 touchMovement = new Vector3(direction.x,0) * Speed;
+            Vector3 touchMovement = new Vector3(direction.x,0) * Speed;*/
+
+            Vector2 playerScreen = Camera.main.WorldToScreenPoint(transform.position);
+            direction = ((Vector2)touchPosition - playerScreen);
+            Vector2 touchMovement = new Vector2(direction.x, 0);
+            transform.position = touchMovement * Time.deltaTime * Speed;
         }
     }
     void Jump()
@@ -38,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.touchCount > 0)
         {
-            Touch tap = Input.GetTouch(0);
+            touch = Input.GetTouch(0);
             Vector2 CurrentVelocity = gameObject.GetComponent<Rigidbody2D>().velocity;
             CurrentVelocity.y = 0f;
             gameObject.GetComponent<Rigidbody2D>().velocity = CurrentVelocity;
