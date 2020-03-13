@@ -15,24 +15,24 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
 
 
-    void Update()
+    void FixedUpdate()
     {
         Jump();
-        /*Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-        transform.position += movement * Time.deltaTime * Speed;
-        /*if (touch.phase == TouchPhase.Moved)
+        //Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        //transform.position += movement * Time.deltaTime * Speed;
+        if (touch.phase == TouchPhase.Moved)
         {
             /*touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
             touchPosition.z = 0;
             direction = (touchPosition - transform.position);
-            Vector3 touchMovement = new Vector3(direction.x,0) * Speed;
+            Vector3 touchMovement = new Vector3(direction.x,0) * Speed;*/
 
             Vector2 playerScreen = Camera.main.WorldToScreenPoint(transform.position);
-            direction = ((Vector2)touchPosition - playerScreen);
-            Vector2 touchMovement = new Vector2(direction.x, 0);
-            transform.position = touchMovement * Time.deltaTime * Speed;
-        }*/
-        if(joystick.Horizontal >= .2f)
+            direction = ((Vector2)touchPosition - playerScreen).normalized;
+            Vector2 touchMovement = new Vector2(direction.x * Time.deltaTime * Speed, transform.position.y);
+            transform.position = touchMovement;
+        }
+        /*if(joystick.Horizontal >= .2f)
         {
             horizontalMove = Speed;
         }
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             horizontalMove = 0;
-        }
+        }*/
     }
     void Jump()
     {
