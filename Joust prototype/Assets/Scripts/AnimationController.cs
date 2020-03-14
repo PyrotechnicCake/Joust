@@ -5,35 +5,37 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     Animator animator;
+    PlayerMovement movement;
     public bool facingRight = false;
     
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        movement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxis("Horizontal");
+        float h = movement.direction;
         if (h > 0 && !facingRight)
             Flip();
         else if (h < 0 && facingRight)
             Flip();
-        if (Input.GetButtonDown("Horizontal"))
+        if (movement.dragTouch.phase == TouchPhase.Moved)
         {
             animator.SetInteger("AnimState", 1);
         }
-        else if (Input.GetButtonUp("Horizontal"))
+        else if (movement.dragTouch.phase == TouchPhase.Ended)
         {
             animator.SetInteger("AnimState",2);
         }
-        else if (GetComponent<PlayerMovement>().onGround == false || Input.GetButton("Jump"))
+        else if (movement.onGround == false || Input.touchCount > 1)
         {
             animator.SetInteger("AnimState", 3);
         }
-        else if(GetComponent<PlayerMovement>().onGround == true && !Input.GetButton("Horizontal") && !Input.GetButton("Jump"))
+        else if(movement.onGround == true && Input.touchCount < 2 && gameObject.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
         {
             animator.SetInteger("AnimState", 0); 
         }

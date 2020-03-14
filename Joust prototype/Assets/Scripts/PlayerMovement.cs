@@ -13,18 +13,20 @@ public class PlayerMovement : MonoBehaviour
     //private Touch touch;
     public Joystick joystick;
     float horizontalMove = 0f;
+    public float direction;
+    public Touch dragTouch;
 
 
     void FixedUpdate()
     {
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
-            if(touch.phase == TouchPhase.Began)
+            dragTouch = Input.GetTouch(0);
+            if(dragTouch.phase == TouchPhase.Began)
             {
-                touchPosition = touch.position;
+                touchPosition = dragTouch.position;
             }
-            if (touch.phase == TouchPhase.Moved)
+            if (dragTouch.phase == TouchPhase.Moved)
             {
                 /*touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
                 touchPosition.z = 0;
@@ -32,18 +34,21 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 touchMovement = new Vector3(direction.x,0) * Speed;*/
 
                 //Vector2 playerScreen = Camera.main.WorldToScreenPoint(transform.position);
-                Vector2 direction = ((Vector2)touch.position - touchPosition).normalized;
-                Vector2 touchMovement = new Vector2(direction.x * Time.deltaTime * Speed, transform.position.y);
-                transform.position = touchMovement;
+                direction = Mathf.Clamp((dragTouch.position.x - touchPosition.x),-1,1);
+                Vector3 movement = new Vector3(direction, 0f, 0f);
+                transform.position += movement * Time.deltaTime * Speed;
+                //Vector2 touchMovement = new Vector2(direction.x * Time.deltaTime * Speed, transform.position.y);
+                //transform.position = touchMovement;
             }
+            
         }
         
         if (Input.touchCount > 1)
         {
             Jump();
         }
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-        transform.position += movement * Time.deltaTime * Speed;
+        //Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        //transform.position += movement * Time.deltaTime * Speed;
         
         /*if (joystick.Horizontal >= .2f)
         {
@@ -69,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         CurrentVelocity.y = 0f;
         gameObject.GetComponent<Rigidbody2D>().velocity = CurrentVelocity;
         gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 5f), ForceMode2D.Impulse);
+
 
         if (Input.GetButtonDown("Jump") && onGround == true || Input.GetButtonDown("Jump"))
         {
